@@ -46,6 +46,7 @@ namespace _Project.Code.Gameplay.PlayerControllers.ThirdPerson.States
 
         private void TransitionToGroundState()
         {
+            _controller.AnimationController.SetBool(AnimationParameter.IsGrounded, true);
             // Check for buffered jump input
             if (Time.time - _controller.LastJumpInputTime < _controller.MovementProfile.JumpBufferTime)
             {

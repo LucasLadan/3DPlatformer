@@ -14,6 +14,8 @@ namespace _Project.Code.Gameplay.PlayerControllers.ThirdPerson
     [RequireComponent(typeof(CharacterControllerMotor), typeof(GroundCheck))]
     public class ThirdPersonController : BasePlayerController
     {
+        [SerializeField] public ParticleSystem _glideParticles;
+
         [field: SerializeField, Header("Third Person Settings")]
         public ThirdPersonMovementProfile MovementProfile { get; private set; }
 

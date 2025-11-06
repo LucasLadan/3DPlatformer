@@ -15,6 +15,7 @@ namespace _Project.Code.Gameplay.PlayerControllers.ThirdPerson.States
             base.Enter();
 
             _controller.AnimationController.TriggerAnimation(AnimationTrigger.Jump);
+            _controller.AnimationController.SetBool(AnimationParameter.IsGrounded, false);
 
             var jumpVelocity = _controller.MovementProfile.CalculateJumpForce();
             _controller.Motor.Jump(jumpVelocity);

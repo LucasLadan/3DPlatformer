@@ -13,6 +13,11 @@ namespace _Project.Code.Gameplay.PlayerControllers.ThirdPerson.States
         {
         }
 
+        public override void Enter()
+        {
+            _controller._glideParticles.Play();
+        }
+
         public override void Update()
         {
             // Apply stronger gravity when falling
@@ -40,12 +45,16 @@ namespace _Project.Code.Gameplay.PlayerControllers.ThirdPerson.States
             // Checking if jump is not held
             else if (!_controller.IsJumpHeld)
             {
+                _controller._glideParticles.Stop();
                 _stateMachine.TransitionTo<TPFallingState>();
             }
         }
 
         private void TransitionToGroundState()
         {
+            _controller.AnimationController.SetBool(AnimationParameter.IsGrounded, true);
+            _controller._glideParticles.Stop();
+
             // Check for buffered jump input
             if (Time.time - _controller.LastJumpInputTime < _controller.MovementProfile.JumpBufferTime)
             {
